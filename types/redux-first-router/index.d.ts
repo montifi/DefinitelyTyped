@@ -25,7 +25,7 @@ export type StateGetter<TState = any> = () => TState;
 
 export type RouteString = string;
 
-export type ConfirmLeave = (state: object, action: object) => Nullable<string>;
+export type ConfirmLeave = (state: any, action: any) => Nullable<string>;
 
 export type RouteThunk<TState = any> = (
     dispatch: Dispatch<any>,
@@ -53,8 +53,8 @@ export interface RoutesMap<TKeys = {}, TState = any> {
 export interface ReceivedAction {
     type: string;
     payload: Payload;
-    meta?: object;
-    query?: object;
+    meta?: any;
+    query?: any;
     search?: string;
     navKey?: Nullable<string>;
 }
@@ -62,11 +62,11 @@ export interface ReceivedAction {
 export interface ReceivedActionMeta {
     type: string;
     payload: Payload;
-    query?: object;
+    query?: any;
     navKey?: Nullable<string>;
     meta: {
         notFoundPath?: string;
-        query?: object;
+        query?: any;
         search?: string;
     };
 }
@@ -83,7 +83,7 @@ export interface Location {
     pathname: string;
     type: string;
     payload: Payload;
-    query?: object;
+    query?: any;
     search?: string;
 }
 
@@ -91,7 +91,7 @@ export interface LocationState<TKeys = {}, TState = any> {
     pathname: string;
     type: string;
     payload: Payload;
-    query?: object;
+    query?: any;
     search?: string;
     prev: Location;
     kind: Nullable<string>;
@@ -115,14 +115,14 @@ export interface NavigationAction {
     actions?: NavigationAction[];
     action?: NavigationAction;
     params?: Params;
-    meta?: object;
+    meta?: any;
 }
 
 export interface Meta {
     location: ActionMetaLocation;
     notFoundPath?: string;
     navigation?: NavigationAction;
-    query?: object;
+    query?: any;
     search?: string;
 }
 
@@ -130,7 +130,7 @@ export interface Action {
     type: string;
     payload?: Payload;
     meta?: Meta;
-    query?: object;
+    query?: any;
     navKey?: Nullable<string>;
 }
 
@@ -146,21 +146,21 @@ export type Listener = (
     action: HistoryAction
 ) => void;
 
-export type ScrollBehavior = object;
+export type ScrollBehavior = any;
 
 export interface Router<TState = any> {
     getStateForActionOriginal(
-        action: object,
+        action: any,
         state: Nullable<TState>
     ): Nullable<TState>;
     getStateForAction(
-        action: object,
+        action: any,
         state: Nullable<TState>
     ): Nullable<TState>;
     getPathAndParamsForState(
         state: TState
     ): { path: Nullable<string>; params: Nullable<Params> };
-    getActionForPathAndParams(path: string): Nullable<object>;
+    getActionForPathAndParams(path: string): Nullable<any>;
 }
 
 export interface Navigator<TState = any> {
@@ -176,7 +176,7 @@ export type SelectTitleState<TState = any> = (state: TState) => string;
 
 export interface QuerySerializer {
     stringify(params: Params): string;
-    parse(queryString: string): object;
+    parse(queryString: string): any;
 }
 
 export interface NavigatorsConfig<TKeys = {}, TState = any> {
@@ -185,19 +185,19 @@ export interface NavigatorsConfig<TKeys = {}, TState = any> {
 
     actionToNavigation(
         navigators: Navigators<TState>,
-        action: object, // TODO check this
+        action: any, // TODO check this
         navigationAction: Nullable<NavigationAction>,
         route: Nullable<Route<TKeys, TState>>
-    ): object;
+    ): any;
     navigationToAction(
         navigators: Navigators<TState>,
         store: Store<TState>,
         routesMap: RoutesMap<TKeys, TState>,
-        action: object
+        action: any
     ): {
-            action: object;
-            navigationAction: Nullable<NavigationAction>;
-        };
+        action: any;
+        navigationAction: Nullable<NavigationAction>;
+    };
 }
 
 export interface Bag {
@@ -296,8 +296,8 @@ export interface Options<TKeys = {}, TState = any> {
     extra?: any;
 }
 
-export type Params = object;
-export type Payload = object;
+export type Params = any;
+export type Payload = any;
 
 export type DisplayConfirmLeave = (message: string, callback: (unblock: boolean) => void) => void;
 
